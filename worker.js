@@ -4,7 +4,7 @@ addEventListener('fetch', event => {
 
 async function handleRequest(request) {
   const url = new URL(request.url);
-  const cookie = request.headers.get('x-custom-cookie') || ''; // 从自定义请求头获取 cookie
+  const cookie = decodeURIComponent(request.headers.get('x-custom-cookie')) || ''; // 从自定义请求头获取 cookie
 
   // 处理 CORS 预检请求
   if (request.method === 'OPTIONS') {
@@ -61,7 +61,7 @@ async function handleRequest(request) {
 async function handleImageUrlRecognition(request) {
   try {
     const { imageUrl } = await request.json();
-    const cookie = request.headers.get('x-custom-cookie');
+    const cookie = decodeURIComponent(request.headers.get('x-custom-cookie'));
 
     if (!cookie || !imageUrl) {
       return new Response(JSON.stringify({
@@ -121,7 +121,7 @@ async function handleImageUrlRecognition(request) {
 async function handleBase64Recognition(request) {
   try {
     const { base64Image } = await request.json();
-    const cookie = request.headers.get('x-custom-cookie');
+    const cookie = decodeURIComponent(request.headers.get('x-custom-cookie'));
 
     if (!cookie || !base64Image) {
       return new Response(JSON.stringify({
@@ -182,7 +182,7 @@ async function handleBase64Recognition(request) {
 async function handleFileRecognition(request) {
   try {
     const { imageId } = await request.json();
-    const cookie = request.headers.get('x-custom-cookie') || '';
+    const cookie = decodeURIComponent(request.headers.get('x-custom-cookie')) || '';
 
     if (!cookie || !imageId) {
       return new Response(JSON.stringify({
@@ -212,7 +212,7 @@ async function handleFileRecognition(request) {
 async function handleProxyUpload(request) {
   try {
     const formData = await request.formData();
-    const cookie = request.headers.get('x-custom-cookie') || '';
+    const cookie = decodeURIComponent(request.headers.get('x-custom-cookie')) || '';
     
     // 从cookie中提取token
     const tokenMatch = cookie.match(/token=([^;]+)/);
@@ -251,7 +251,7 @@ async function handleProxyUpload(request) {
 
 // 通用的识别函数
 async function recognizeImage(token, imageId, request) {
-  const cookie = request.headers.get('x-custom-cookie') || '';
+  const cookie = decodeURIComponent(request.headers.get('x-custom-cookie')) || '';
   const response = await fetch('https://chat.qwenlm.ai/api/chat/completions', {
     method: 'POST',
     headers: {
