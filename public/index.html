@@ -6,8 +6,8 @@
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="> <!-- 1x1 透明像素占位符 -->
     <title>Qwen VL 智能识别系统</title>
 
-    <!-- 添加 MathJax 支持 -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <!-- 替换 polyfill.io 为更稳定的 CDN -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/core-js/3.30.0/minified.js"></script>
     <script>
     window.MathJax = {
       tex: {
@@ -977,19 +977,91 @@
             };
         }
 
+        // 新增: 通用复制文本函数
+        async function copyTextToClipboard(text) {
+            if (!text) return false;
+            
+            // 首选 navigator.clipboard API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    return true;
+                } catch (clipboardError) {
+                    console.warn('Clipboard API failed:', clipboardError);
+                    // 继续尝试后备方案
+                }
+            }
+            
+            // 后备方案: 使用 textarea
+            try {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                const successful = document.execCommand('copy');
+                textArea.remove();
+                return successful;
+            } catch (fallbackError) {
+                console.error('Fallback copy failed:', fallbackError);
+                return false;
+            }
+        }
+
         // Show Full Image Modal
         function showFullImage(src) {
-            if (!src || src.startsWith('data:image/gif') || !modal || !modalImg) return; // Don't show placeholder
-            modalImg.src = src;
-            modal.style.display = 'block';
-            modalImg.style.opacity = '0';
-            // Use requestAnimationFrame for smoother fade-in
-             requestAnimationFrame(() => {
-                 requestAnimationFrame(() => {
-                      modalImg.style.opacity = '1';
-                 });
-             });
-            modalImg.onerror = () => { alert('图片加载失败'); modal.style.display = 'none'; };
+            if (!src || src.startsWith('data:image/gif') || !modal || !modalImg) return;
+            
+            try {
+                // 如果是 base64 图片并且太长，使用新窗口打开
+                if (src.startsWith('data:') && src.length > 32768) {
+                    const win = window.open('', '_blank');
+                    if (!win) {
+                        alert('请允许打开弹出窗口以查看大图');
+                        return;
+                    }
+                    win.document.write(`
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <title>查看大图</title>
+                            <style>
+                                body { margin: 0; background: #000; height: 100vh; display: flex; justify-content: center; align-items: center; }
+                                img { max-width: 100%; max-height: 100vh; object-fit: contain; }
+                            </style>
+                        </head>
+                        <body>
+                            <img src="${src}" alt="Full size image">
+                        </body>
+                        </html>
+                    `);
+                    win.document.close();
+                    return;
+                }
+
+                // 对于较小的图片或 URL 图片，使用modal显示
+                modalImg.src = src;
+                modal.style.display = 'block';
+                modalImg.style.opacity = '0';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        modalImg.style.opacity = '1';
+                    });
+                });
+            } catch (error) {
+                console.error('显示大图失败:', error);
+                alert('图片加载失败，请重试');
+                modal.style.display = 'none';
+            }
+
+            modalImg.onerror = () => {
+                alert('图片加载失败，请重试');
+                modal.style.display = 'none';
+            };
         }
 
         // Read File as Data URL (Async)
@@ -1421,22 +1493,22 @@
                 // }
             });
 
-            // Main Result Copy Button
+            // 更新主结果复制按钮的事件监听器
             if (copyBtn) {
                 copyBtn.addEventListener('click', async () => {
                     const originalText = resultDiv?.getAttribute('data-original-text');
                     if (!originalText) return;
-                    try {
-                        await navigator.clipboard.writeText(originalText);
+                    
+                    const success = await copyTextToClipboard(originalText);
+                    if (success) {
                         copyBtn.textContent = '已复制';
                         copyBtn.classList.add('copied');
                         setTimeout(() => {
                             copyBtn.textContent = '复制结果';
                             copyBtn.classList.remove('copied');
                         }, 2000);
-                    } catch (err) {
-                        console.error('复制失败:', err);
-                        alert('复制失败，浏览器可能不支持或权限不足。');
+                    } else {
+                        alert('复制失败，请手动复制文本');
                     }
                 });
             }
@@ -1545,26 +1617,28 @@
             if (!currentToken) return;
             try {
                 const history = historyManager.loadHistory(currentToken);
-                // Find the specific text element using index more reliably
                 const historyItemDiv = document.querySelector(`.history-sidebar .history-item[data-index="${index}"] .history-text`);
                 const result = historyItemDiv?.getAttribute('data-original-text') || history[index]?.result;
 
                 if (!result) throw new Error('无法获取结果文本');
 
-                await navigator.clipboard.writeText(result);
-                btn.textContent = '已复制';
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    // Check if button still exists before resetting
-                    const currentBtn = document.querySelector(`.history-sidebar .history-item[data-index="${index}"] .action-btn.copy-btn`);
-                    if (currentBtn) {
-                         currentBtn.textContent = '复制结果';
-                         currentBtn.classList.remove('copied');
-                    }
-                }, 2000);
+                const success = await copyTextToClipboard(result);
+                if (success) {
+                    btn.textContent = '已复制';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        const currentBtn = document.querySelector(`.history-sidebar .history-item[data-index="${index}"] .action-btn.copy-btn`);
+                        if (currentBtn) {
+                            currentBtn.textContent = '复制结果';
+                            currentBtn.classList.remove('copied');
+                        }
+                    }, 2000);
+                } else {
+                    throw new Error('复制操作失败');
+                }
             } catch (err) {
                 console.error('复制历史记录失败:', err);
-                alert('复制失败: ' + err.message);
+                alert('复制失败: ' + (err.message || '请手动复制文本'));
             }
         }
 
