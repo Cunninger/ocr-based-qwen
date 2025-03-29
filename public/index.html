@@ -1,802 +1,972 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="> <!-- 1x1 透明像素占位符 -->
+    <link rel="icon" type="image/png"
+        href="data:image/png;base64,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">
+
     <title>Qwen VL 智能识别系统</title>
 
     <!-- 替换 polyfill.io 为更稳定的 CDN -->
     <script src="https://cdn.bootcdn.net/ajax/libs/core-js/3.30.0/minified.js"></script>
     <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [["$", "$"]],
-        displayMath: [["$$", "$$"]]
-      },
-      startup: {
-        pageReady: () => {
-          return MathJax.startup.defaultPageReady().then(() => {
-            // MathJax 加载完成后刷新历史记录 (如果 HistoryManager 和 currentToken 已定义)
-            if (typeof HistoryManager !== 'undefined' && typeof currentToken !== 'undefined' && currentToken) {
-              if (typeof historyManager === 'undefined') { // Ensure historyManager is instantiated
-                 historyManager = new HistoryManager();
-              }
-              historyManager.displayHistory(currentToken);
+        // MathJax 配置
+        window.MathJax = {
+            tex: {
+                inlineMath: [["$", "$"]],
+                displayMath: [["$$", "$$"]]
+            },
+            startup: {
+                pageReady: () => {
+                    return MathJax.startup.defaultPageReady().then(() => {
+                        // MathJax 加载完后重新加载历史记录(如果 HistoryManager 和 currentToken 已定义)
+                        if (typeof HistoryManager !== 'undefined' && typeof currentToken !== 'undefined' && currentToken) {
+                            if (typeof historyManager === 'undefined') { // 确保 historyManager 已初始化
+                                historyManager = new HistoryManager();
+                            }
+                            historyManager.displayHistory(currentToken);
+                        }
+                    });
+                }
+            },
+            options: {
+                enableMenu: false
             }
-          });
-        }
-      },
-      options: {
-        enableMenu: false
-      }
-    };
+        };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
-    function waitForMathJax(callback, maxTries = 30) {
-      let tries = 0;
-      const checkMathJax = () => {
-        tries++;
-        if (window.MathJax && window.MathJax.typesetPromise) {
-          callback();
-        } else if (tries < maxTries) {
-          setTimeout(checkMathJax, 100);
-        } else {
-           console.warn("MathJax did not load within the timeout period.");
+        // 等待 MathJax 加载完成的函数
+        function waitForMathJax(callback, maxTries = 30) {
+            let tries = 0;
+            const checkMathJax = () => {
+                tries++;
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    callback();
+                } else if (tries < maxTries) {
+                    setTimeout(checkMathJax, 100);
+                } else {
+                    console.warn("MathJax 在超时时间内未能加载完成");
+                }
+            };
+            checkMathJax();
         }
-      };
-      checkMathJax();
-    }
     </script>
 
     <style>
         * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
+
         body {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-          min-height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 20px;
-          padding-bottom: 80px; /* Add padding for footer */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            padding-bottom: 80px;
+            /* 为底部添加间距 */
         }
+
         .container {
-          background: rgba(255, 255, 255, 0.95);
-          padding: 2.5rem;
-          /* padding-bottom: 4rem; Removed padding as footer is outside */
-          border-radius: 16px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          width: 90%;
-          max-width: 800px;
-          transition: all 0.3s ease;
-          margin-bottom: 60px; /* Add margin for footer */
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            /* padding-bottom: 4rem; 移除底部间距，因为底部在外部 */
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            transition: all 0.3s ease;
+            margin-bottom: 60px;
+            /* 为底部添加间距 */
         }
+
         h1 {
-          color: #2c3e50;
-          margin-bottom: 0.5rem;
-          font-size: 2.2rem;
-          text-align: center;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          background: linear-gradient(135deg, #1a5fb4 0%, #3498db 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-          position: relative;
-          padding-bottom: 10px;
-          animation: titleFadeIn 1s ease-out;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #1a5fb4 0%, #3498db 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            padding-bottom: 10px;
+            animation: titleFadeIn 1s ease-out;
         }
+
         @keyframes titleFadeIn {
-          from {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #3498db, transparent);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            animation: subtitleFadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes subtitleFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+        }
+
+        .upload-area {
+            border: 2px dashed #8e9eab;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-area:hover {
+            border-color: #3498db;
+            background: rgba(52, 152, 219, 0.05);
+        }
+
+        .upload-area.dragover {
+            border-color: #3498db;
+            background: rgba(52, 152, 219, 0.1);
+            transform: scale(1.02);
+        }
+
+        .upload-area i {
+            font-size: 2rem;
+            color: #8e9eab;
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        #tokens {
+            /* 此 ID 似乎未用于输入，可能需要移除或重命名，如果 #cookieInput 是目标 */
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #dcdde1;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            resize: none;
+        }
+
+        .result-container {
+            margin-top: 1.5rem;
             opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .result-container.show {
             opacity: 1;
             transform: translateY(0);
-          }
         }
-        h1::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 100px;
-          height: 3px;
-          background: linear-gradient(90deg, transparent, #3498db, transparent);
-        }
-        .subtitle {
-          color: #7f8c8d;
-          text-align: center;
-          font-size: 1.1rem;
-          margin-bottom: 1.5rem;
-          font-weight: 300;
-          letter-spacing: 1px;
-          opacity: 0.8;
-          animation: subtitleFadeIn 1s ease-out 0.3s both;
-        }
-        @keyframes subtitleFadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 0.8;
-            transform: translateY(0);
-          }
-        }
-        .upload-area {
-          border: 2px dashed #8e9eab;
-          border-radius: 12px;
-          padding: 2rem;
-          text-align: center;
-          transition: all 0.3s ease;
-          margin-bottom: 1.5rem;
-          cursor: pointer;
-          position: relative;
-          overflow: hidden;
-        }
-        .upload-area:hover {
-          border-color: #3498db;
-          background: rgba(52, 152, 219, 0.05);
-        }
-        .upload-area.dragover {
-          border-color: #3498db;
-          background: rgba(52, 152, 219, 0.1);
-          transform: scale(1.02);
-        }
-        .upload-area i {
-          font-size: 2rem;
-          color: #8e9eab;
-          margin-bottom: 1rem;
-        }
-        .upload-text {
-          color: #7f8c8d;
-          font-size: 0.9rem;
-        }
-        #tokens { /* This ID seems unused for input, maybe remove or rename if #cookieInput is meant */
-          width: 100%;
-          padding: 0.8rem;
-          border: 1px solid #dcdde1;
-          border-radius: 8px;
-          margin-bottom: 1rem;
-          font-size: 0.9rem;
-          resize: none;
-        }
-        .result-container {
-          margin-top: 1.5rem;
-          opacity: 0;
-          transform: translateY(20px);
-          transition: all 0.3s ease;
-        }
-        .result-container.show {
-          opacity: 1;
-          transform: translateY(0);
-        }
+
         .result {
-          background: #f8f9fa;
-          padding: 1.2rem;
-          border-radius: 8px;
-          color: #2c3e50;
-          font-size: 1rem;
-          line-height: 1.6;
-          white-space: pre-wrap;
-          word-wrap: break-word; /* Ensure long words break */
+            background: #f8f9fa;
+            padding: 1.2rem;
+            border-radius: 8px;
+            color: #2c3e50;
+            font-size: 1rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            /* 确保长单词换行 */
         }
+
         .loading {
-          display: none;
-          text-align: center;
-          margin: 1rem 0;
+            display: none;
+            text-align: center;
+            margin: 1rem 0;
         }
+
         .loading::after {
-          content: '';
-          display: inline-block;
-          width: 20px;
-          height: 20px;
-          border: 2px solid #3498db;
-          border-radius: 50%;
-          border-top-color: transparent;
-          animation: spin 0.8s linear infinite;
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #3498db;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.8s linear infinite;
         }
+
         @keyframes spin {
-          to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
+
         .preview-image {
-          max-width: 100%;
-          max-height: 200px;
-          margin: 1rem 0;
-          border-radius: 8px;
-          display: none;
+            max-width: 100%;
+            max-height: 200px;
+            margin: 1rem 0;
+            border-radius: 8px;
+            display: none;
         }
+
         /* 侧边栏样式 */
         .sidebar {
-          position: fixed;
-          right: -400px; /* Initial hidden state */
-          top: 0;
-          width: 400px; /* Keep width */
-          height: 100vh;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(10px);
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-          transition: right 0.3s ease;
-          padding: 30px;
-          z-index: 1000;
-          overflow-y: auto;
+            position: fixed;
+            right: -400px;
+            /* 初始隐藏状态 */
+            top: 0;
+            width: 400px;
+            /* 保持宽度 */
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            padding: 30px;
+            z-index: 1000;
+            overflow-y: auto;
         }
+
         .sidebar.open {
-          right: 0;
+            right: 0;
         }
+
         .sidebar-toggle {
-          position: fixed;
-          right: 20px;
-          top: 20px;
-          background: #3498db;
-          color: white;
-          border: none;
-          padding: 10px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-          z-index: 1001;
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1001;
         }
+
         .sidebar-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 20px;
-          padding-bottom: 15px;
-          border-bottom: 2px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
         }
+
         .sidebar-header h2 {
-          margin: 0;
-          color: #2c3e50;
-          font-size: 1.5rem;
+            margin: 0;
+            color: #2c3e50;
+            font-size: 1.5rem;
         }
+
         .close-sidebar {
-          background: none;
-          border: none;
-          font-size: 1.5rem;
-          cursor: pointer;
-          color: #7f8c8d;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #7f8c8d;
         }
+
         .token-section {
-          margin-bottom: 25px;
+            margin-bottom: 25px;
         }
+
         .token-section label {
-          display: block;
-          margin-bottom: 10px;
-          color: #34495e;
-          font-weight: 500;
+            display: block;
+            margin-bottom: 10px;
+            color: #34495e;
+            font-weight: 500;
         }
+
         .cookie-input-container {
-          margin-bottom: 15px;
+            margin-bottom: 15px;
         }
-        #cookieInput { /* Style for the actual cookie input */
-          width: 100%;
-          padding: 12px;
-          border: 2px solid #e9ecef;
-          border-radius: 8px;
-          font-size: 0.95rem;
-          transition: border-color 0.3s ease;
-          /* margin-bottom: 15px; Already handled by container */
-          resize: vertical;
-          min-height: 100px;
-          font-family: monospace;
+
+        #cookieInput {
+            /* 实际的 cookie 输入样式 */
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+            /* margin-bottom: 15px; 已由容器处理 */
+            resize: vertical;
+            min-height: 100px;
+            font-family: monospace;
         }
+
         #cookieInput:focus {
-          outline: none;
-          border-color: #3498db;
+            outline: none;
+            border-color: #3498db;
         }
+
         .cookie-info {
-          background: #f8f9fa;
-          padding: 12px;
-          border-radius: 8px;
-          margin-bottom: 15px;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
         }
+
         .cookie-info p {
-          margin: 0 0 8px 0;
-          color: #2c3e50;
-          font-size: 0.9rem;
-          word-break: break-all; /* Wrap long token display */
+            margin: 0 0 8px 0;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            word-break: break-all;
+            /* 换行长 token 显示 */
         }
+
         .cookie-info p:last-child {
-          margin-bottom: 0;
+            margin-bottom: 0;
         }
+
         #currentTokenDisplay {
-          color: #3498db;
-          font-family: monospace;
+            color: #3498db;
+            font-family: monospace;
         }
+
         .token-expiry {
-          color: #7f8c8d;
-          font-size: 0.85rem;
+            color: #7f8c8d;
+            font-size: 0.85rem;
         }
+
         .token-expiry.expired {
-          color: #e74c3c;
-          font-weight: bold;
+            color: #e74c3c;
+            font-weight: bold;
         }
+
         .save-btn {
-          background: #3498db;
-          color: white;
-          border: none;
-          padding: 12px 20px;
-          border-radius: 8px;
-          cursor: pointer;
-          width: 100%;
-          font-size: 1rem;
-          transition: background 0.3s ease;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: background 0.3s ease;
         }
+
         .save-btn:hover {
-          background: #2980b9;
+            background: #2980b9;
         }
-        /* Token list display (if used, seems redundant now) */
+
+        /* Token 列表显示(如果使用，当前似乎冗余) */
         .token-list {
-          margin-top: 25px;
-          max-height: calc(100vh - 450px); /* Adjust as needed */
-          overflow-y: auto;
+            margin-top: 25px;
+            max-height: calc(100vh - 450px);
+            /* 根据需要调整 */
+            overflow-y: auto;
         }
+
         .token-item {
-          background: #f8f9fa;
-          padding: 15px;
-          margin-bottom: 12px;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          border: 2px solid transparent;
-          word-break: break-all;
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            word-break: break-all;
         }
+
         .token-item:hover {
-          background: #e9ecef;
-          transform: translateX(-5px);
+            background: #e9ecef;
+            transform: translateX(-5px);
         }
+
         .token-item.active {
-          border-color: #3498db;
-          background: #f1f9ff;
+            border-color: #3498db;
+            background: #f1f9ff;
         }
-        /* Advanced Mode & Prompt */
-         .advanced-mode-toggle {
-          display: flex;
-          align-items: center;
-          margin-bottom: 15px;
-          padding: 10px;
-          background: #f8f9fa;
-          border-radius: 8px;
+
+        /* 高级模式 & Prompt */
+        .advanced-mode-toggle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
         }
+
         .advanced-mode-toggle input[type="checkbox"] {
-          margin-right: 10px;
-          width: 18px; /* Make checkbox slightly larger */
-          height: 18px;
-          cursor: pointer;
+            margin-right: 10px;
+            width: 18px;
+            /* 使复选框稍大 */
+            height: 18px;
+            cursor: pointer;
         }
+
         .advanced-mode-toggle label {
-            cursor: pointer; /* Make label clickable */
-            flex-grow: 1; /* Allow label to take space */
+            cursor: pointer;
+            /* 使标签可点击 */
+            flex-grow: 1;
+            /* 允许标签占用空间 */
         }
+
         .prompt-container {
-          display: none; /* Default hidden */
-          margin-bottom: 15px;
+            display: none;
+            /* 默认隐藏 */
+            margin-bottom: 15px;
         }
+
         .prompt-container.show {
-          display: block;
+            display: block;
         }
+
         #promptInput {
-          width: 100%;
-          padding: 12px;
-          border: 2px solid #e9ecef;
-          border-radius: 8px;
-          font-size: 0.95rem;
-          resize: vertical;
-          min-height: 120px;
-          font-family: monospace;
-          line-height: 1.4;
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            resize: vertical;
+            min-height: 120px;
+            font-family: monospace;
+            line-height: 1.4;
         }
+
         #promptInput:focus {
-          outline: none;
-          border-color: #3498db;
+            outline: none;
+            border-color: #3498db;
         }
-        /* History Sidebar */
+
+        /* 历史记录侧边栏 */
         .history-sidebar {
-          position: fixed;
-          left: -400px; /* Initial hidden state */
-          top: 0;
-          width: 400px;
-          height: 100vh;
-          background: rgba(255, 255, 255, 0.98);
-          backdrop-filter: blur(10px);
-          box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-          transition: left 0.3s ease;
-          padding: 20px;
-          z-index: 1000;
-          overflow-y: auto;
+            position: fixed;
+            left: -400px;
+            /* 初始隐藏状态 */
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            padding: 20px;
+            z-index: 1000;
+            overflow-y: auto;
         }
+
         .history-sidebar.open {
-          left: 0;
+            left: 0;
         }
+
         .history-toggle {
-          position: fixed;
-          left: 20px;
-          top: 20px;
-          background: #3498db;
-          color: white;
-          border: none;
-          padding: 10px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-          z-index: 1001;
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1001;
         }
-        /* History Item Styling */
-        .history-sidebar h2 { /* Style heading inside history sidebar */
+
+        /* 历史记录项样式 */
+        .history-sidebar h2 {
+            /* 历史记录侧边栏内标题样式 */
             color: #2c3e50;
             font-size: 1.5rem;
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 2px solid #eee;
         }
+
         .history-item {
-          background: #ffffff;
-          border-radius: 12px;
-          margin-bottom: 20px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-          overflow: hidden;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-          display: block; /* Vertical layout */
+            background: #ffffff;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: block;
+            /* 垂直布局 */
         }
+
         .history-item:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
+
         .history-image-container {
-          position: relative;
-          width: 100%;
-          height: 200px;
-          overflow: hidden;
-          background-color: #f0f0f0; /* Placeholder background */
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            /* 占位背景 */
         }
+
         .history-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.3s ease;
-          cursor: pointer;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
-         .image-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.4);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          pointer-events: none;
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
+
         .history-image-container:hover .image-overlay {
-          opacity: 1;
-          pointer-events: auto;
+            opacity: 1;
+            pointer-events: auto;
         }
+
         .history-image-container:hover .history-image {
-          transform: scale(1.05);
+            transform: scale(1.05);
         }
+
         .overlay-btn {
-          background: rgba(255, 255, 255, 0.9);
-          color: #2c3e50;
-          border: none;
-          padding: 8px 16px;
-          border-radius: 20px;
-          cursor: pointer;
-          font-size: 0.9rem;
-          transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
         }
+
         .overlay-btn:hover {
-          background: #ffffff;
-          transform: scale(1.05);
+            background: #ffffff;
+            transform: scale(1.05);
         }
+
         .history-content {
-          padding: 16px;
+            padding: 16px;
         }
+
         .history-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 12px;
-          padding-bottom: 12px;
-          border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
         }
+
         .history-time {
-          color: #7f8c8d;
-          font-size: 0.9rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
         }
+
         .history-actions {
-          display: flex;
-          gap: 8px;
+            display: flex;
+            gap: 8px;
         }
+
         .action-btn {
-          background: none;
-          border: 1px solid #e0e0e0;
-          padding: 4px 8px;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 0.8rem;
-          transition: all 0.2s ease;
+            background: none;
+            border: 1px solid #e0e0e0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
         }
-        .action-btn.copy-btn { color: #3498db; border-color: #3498db; }
-        .action-btn.delete-btn { color: #e74c3c; border-color: #e74c3c; }
+
+        .action-btn.copy-btn {
+            color: #7f8c8d;
+            border-color: #bdc3c7;
+        }
+
+        .action-btn.delete-btn {
+            color: #e74c3c;
+            border-color: #e74c3c;
+        }
+
         .action-btn:hover {
-          background: #f8f9fa;
-          transform: translateY(-1px);
+            background: #f8f9fa;
+            transform: translateY(-1px);
         }
+
         .action-btn.copied {
-           background-color: #27ae60;
-           color: white;
-           border-color: #27ae60;
+            background-color: #27ae60;
+            color: white;
+            border-color: #27ae60;
         }
+
         .history-text {
-          color: #2c3e50;
-          font-size: 0.95rem;
-          line-height: 1.6;
-          max-height: 200px;
-          overflow-y: auto;
-          padding-right: 8px;
-          white-space: pre-wrap;
-          word-break: break-word;
+            color: #2c3e50;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 8px;
+            white-space: pre-wrap;
+            word-break: break-word;
         }
-        .history-text::-webkit-scrollbar { width: 4px; }
-        .history-text::-webkit-scrollbar-track { background: #f1f1f1; }
-        .history-text::-webkit-scrollbar-thumb { background: #c0c0c0; border-radius: 2px; }
+
+        .history-text::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .history-text::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .history-text::-webkit-scrollbar-thumb {
+            background: #c0c0c0;
+            border-radius: 2px;
+        }
+
         .no-history {
-          text-align: center;
-          color: #7f8c8d;
-          padding: 2rem 1rem; /* More padding */
-          font-style: italic;
+            text-align: center;
+            color: #7f8c8d;
+            padding: 2rem 1rem;
+            /* 更多间距 */
+            font-style: italic;
         }
-        /* Result Area */
+
+        /* 结果区域 */
         .result-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
         }
-        .copy-btn { /* Style for main result copy button */
-          background: #3498db;
-          color: white;
-          border: none;
-          padding: 5px 10px;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 0.9rem;
-          transition: background 0.3s ease;
+
+        .copy-btn {
+            /* 主结果复制按钮样式 */
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
-        .copy-btn:hover { background: #2980b9; }
-        .copy-btn.copied { background: #27ae60; }
-        /* Input Controls */
+
+        .copy-btn:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .copy-btn.copied {
+            background: #e8f4ea;
+            color: #28a745;
+            border-color: #c3e6cb;
+        }
+
+        /* 输入控件 */
         .input-controls {
-          margin-top: 15px;
-          width: 100%;
+            margin-top: 15px;
+            width: 100%;
         }
-        #base64Input, #urlInput { /* General styles for textareas */
+
+        #base64Input,
+        #urlInput {
+            /* 文本区域的通用样式 */
             width: 100%;
             padding: 10px;
             border: 1px solid #dcdde1;
             border-radius: 8px;
             resize: vertical;
             font-size: 14px;
-            margin-top: 10px; /* Spacing when visible */
+            margin-top: 10px;
+            /* 可见时的间距 */
         }
-        #base64Input { height: 100px; }
-        #urlInput { height: 40px; }
+
+        #base64Input {
+            height: 100px;
+        }
+
+        #urlInput {
+            height: 40px;
+        }
+
         .button-group {
-          display: flex;
-          gap: 10px;
-          margin-top: 10px;
-          justify-content: center;
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: center;
         }
+
         .toggle-btn {
-          background: #3498db;
-          color: white;
-          border: none;
-          padding: 8px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-          /* margin-top: 10px; Handled by button-group gap */
-          transition: background 0.3s ease;
-          font-size: 0.9rem; /* Ensure consistent font size */
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            /* margin-top: 10px; 由 button-group 间距处理 */
+            transition: background 0.3s ease;
+            font-size: 0.9rem;
+            /* 确保一致的字体大小 */
         }
-        .toggle-btn:hover { background: #2980b9; }
-        /* Links & Footer */
+
+        .toggle-btn:hover {
+            background: #2980b9;
+        }
+
+        /* 链接和底部 */
         .get-cookie-link {
-          position: fixed;
-          left: 150px;
-          top: 22px;
-          background: #2ecc71;
-          color: white;
-          border: none;
-          padding: 8px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-          z-index: 1001;
-          text-decoration: none;
-          font-size: 14px;
-          transition: background 0.3s ease;
+            position: fixed;
+            left: 150px;
+            top: 22px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s ease;
         }
-        .get-cookie-link:hover { background: #27ae60; }
+
+        .get-cookie-link:hover {
+            background: #27ae60;
+        }
+
         .github-link {
-          position: fixed;
-          right: 150px;
-          top: 20px;
-          background: #333;
-          color: white;
-          border: none;
-          padding: 10px;
-          border-radius: 50%;
-          cursor: pointer;
-          z-index: 1001;
-          width: 40px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: background 0.3s ease;
+            position: fixed;
+            right: 150px;
+            top: 20px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
         }
-        .github-link:hover { background: #24292e; }
+
+        .github-link:hover {
+            background: #24292e;
+        }
+
         .github-icon {
-          width: 24px;
-          height: 24px;
+            width: 24px;
+            height: 24px;
         }
+
         .footer {
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          padding: 15px;
-          text-align: center;
-          background: rgba(255, 255, 255, 0.9);
-          backdrop-filter: blur(5px);
-          z-index: 900;
-          border-top: 1px solid #eee; /* Add a subtle top border */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            z-index: 900;
+            border-top: 1px solid #eee;
+            /* 添加一个细微的顶部边框 */
         }
-        /* Removed footer-content wrapper as footer itself is the container now */
+
+        /* 移除 footer-content 包装器，因为 footer 本身是容器 */
         .powered-by {
-          color: #7f8c8d;
-          font-size: 0.9rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            text-align: center;
         }
+
         .powered-by a {
-          color: #3498db;
-          text-decoration: none;
-          transition: color 0.3s ease;
-          font-weight: 500;
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
         }
-        .powered-by a:hover { color: #2980b9; }
-        /* Image Modal */
+
+        .powered-by a:hover {
+            color: #2980b9;
+        }
+
+        /* 图片模态框 */
         .modal {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.9);
-          z-index: 2000;
-          cursor: pointer;
-          transition: opacity 0.3s ease; /* Add transition */
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            /* 添加过渡 */
         }
+
         .modal-content {
-          max-width: 90%;
-          max-height: 90vh;
-          margin: auto;
-          display: block;
-          position: relative;
-          top: 50%;
-          transform: translateY(-50%);
-          transition: opacity 0.3s ease; /* Add transition */
-          opacity: 1; /* Start visible once modal is displayed */
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+            display: block;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: opacity 0.3s ease;
+            /* 添加过渡 */
+            opacity: 1;
+            /* 一旦模态框显示，开始可见 */
         }
     </style>
 </head>
+
 <body>
-    <!-- Top Fixed Buttons -->
+    <!-- 顶部固定按钮 -->
     <a href="https://chat.qwenlm.ai/" target="_blank" rel="noopener noreferrer" class="get-cookie-link">
-      获取Cookie
+        获取Cookie
     </a>
-    <a href="https://github.com/Cunninger/ocr-based-qwen" target="_blank" rel="noopener noreferrer" class="github-link" title="View on GitHub">
-      <svg class="github-icon" viewBox="0 0 16 16" fill="currentColor">
-        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-      </svg>
+    <a href="https://github.com/Cunninger/ocr-based-qwen" target="_blank" rel="noopener noreferrer" class="github-link"
+        title="View on GitHub">
+        <svg class="github-icon" viewBox="0 0 16 16" fill="currentColor">
+            <path fill-rule="evenodd"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+            </path>
+        </svg>
     </a>
     <button class="sidebar-toggle" id="sidebarToggle">⚙️ Cookie设置</button>
     <button class="history-toggle" id="historyToggle">📋 识别历史</button>
 
-    <!-- Settings Sidebar -->
+    <!-- 设置侧边栏 -->
     <div class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <h2>Cookie管理</h2>
-        <button class="close-sidebar" id="closeSidebar">×</button>
-      </div>
-      <div class="token-section">
-        <label for="cookieInput">输入Cookie</label>
-        <div class="cookie-input-container">
-          <textarea id="cookieInput" placeholder="在此粘贴从 chat.qwenlm.ai 获取的完整 Cookie 字符串..." rows="8"></textarea>
+        <div class="sidebar-header">
+            <h2>Cookie管理</h2>
+            <button class="close-sidebar" id="closeSidebar">×</button>
         </div>
-        <div class="cookie-info">
-          <p>当前Token: <span id="currentTokenDisplay">未设置</span></p>
-          <p>过期时间: <span id="tokenExpiryDisplay" class="token-expiry">未知</span></p>
+        <div class="token-section">
+            <label for="cookieInput">输入Cookie</label>
+            <div class="cookie-input-container">
+                <textarea id="cookieInput" placeholder="在此粘贴从 chat.qwenlm.ai 获取的完整 Cookie 字符串..." rows="8"></textarea>
+            </div>
+            <div class="cookie-info">
+                <p>当前Token: <span id="currentTokenDisplay">未设置</span></p>
+                <p>过期时间: <span id="tokenExpiryDisplay" class="token-expiry">未知</span></p>
+            </div>
+            <button class="save-btn" id="saveTokens">保存设置</button>
         </div>
-        <button class="save-btn" id="saveTokens">保存设置</button>
-      </div>
-      <!-- Token list might be removed if only one cookie is handled -->
-      <!-- <div class="token-list" id="tokenList"></div> -->
-       <div class="advanced-mode-toggle">
-          <input type="checkbox" id="advancedMode">
-          <label for="advancedMode">高级模式 (自定义Prompt)</label>
-       </div>
-       <div class="prompt-container" id="promptContainer">
-          <label for="promptInput">自定义Prompt</label>
-          <textarea id="promptInput" placeholder="输入自定义prompt...">请识别图片中的内容，注意以下要求：\n对于数学公式和普通文本：\n1. 所有数学公式和数学符号都必须使用标准的LaTeX格式\n2. 行内公式使用单个$符号包裹，如：$x^2$\n3. 独立公式块使用两个$$符号包裹，如：$$\sum_{i=1}^n i^2$$\n4. 普通文本保持原样，不要使用LaTeX格式\n5. 保持原文的段落格式和换行\n6. 明显的换行使用\\n表示\n7. 确保所有数学符号都被正确包裹在$或$$中\n\n对于验证码图片：\n1. 只输出验证码字符，不要加任何额外解释\n2. 忽略干扰线和噪点\n3. 注意区分相似字符，如0和O、1和l、2和Z等\n4. 验证码通常为4-6位字母数字组合\n\n不要输出任何额外的解释或说明</textarea>
-       </div>
+        <!-- Token 列表可能会被移除，如果只处理一个 cookie -->
+        <!-- <div class="token-list" id="tokenList"></div> -->
+        <div class="advanced-mode-toggle">
+            <input type="checkbox" id="advancedMode">
+            <label for="advancedMode">高级模式 (自定义Prompt)</label>
+        </div>
+        <div class="prompt-container" id="promptContainer">
+            <label for="promptInput">自定义Prompt</label>
+            <textarea id="promptInput"
+                placeholder="输入自定义prompt...">请识别图片中的内容，注意以下要求：\n对于数学公式和普通文本：\n1. 所有数学公式和数学符号都必须使用标准的LaTeX格式\n2. 行内公式使用单个$符号包裹，如：$x^2$\n3. 独立公式块使用两个$$符号包裹，如：$$\sum_{i=1}^n i^2$$\n4. 普通文本保持原样，不要使用LaTeX格式\n5. 保持原文的段落格式和换行\n6. 明显的换行使用\\n表示\n7. 确保所有数学符号都被正确包裹在$或$$中\n\n对于验证码图片：\n1. 只输出验证码字符，不要加任何额外解释\n2. 忽略干扰线和噪点\n3. 注意区分相似字符，如0和O、1和l、2和Z等\n4. 验证码通常为4-6位字母数字组合\n\n不要输出任何额外的解释或说明</textarea>
+        </div>
     </div>
 
-    <!-- Main Content Area -->
+    <!-- 主要内容区域 -->
     <div class="container">
-      <h1>Qwen VL 智能识别系统</h1>
-      <div class="subtitle">基于通义千问大模型的多模态智能识别引擎</div>
-      <div class="upload-area" id="uploadArea">
-        <i>📸</i>
-        <div class="upload-text">
-          拖拽图片到这里，点击上传，或粘贴图片/Base64/URL<br>
-          支持多种输入方式
+        <h1>Qwen VL 智能识别系统</h1>
+        <div class="subtitle">基于通义千问大模型的多模态智能识别引擎</div>
+        <div class="upload-area" id="uploadArea">
+            <i>📸</i>
+            <div class="upload-text">
+                拖拽图片到这里，点击上传，或粘贴图片/Base64/URL<br>
+                支持多种输入方式
+            </div>
+            <div class="input-controls">
+                <textarea id="base64Input" placeholder="在此输入Base64格式的图片内容..." style="display: none;"></textarea>
+                <textarea id="urlInput" placeholder="在此输入图片URL..." style="display: none;"></textarea>
+                <div class="button-group">
+                    <button id="toggleBase64" class="toggle-btn">Base64输入</button>
+                    <button id="toggleUrl" class="toggle-btn">URL输入</button>
+                </div>
+            </div>
+            <img id="previewImage" class="preview-image" alt="图片预览">
         </div>
-        <div class="input-controls">
-          <textarea id="base64Input" placeholder="在此输入Base64格式的图片内容..." style="display: none;"></textarea>
-          <textarea id="urlInput" placeholder="在此输入图片URL..." style="display: none;"></textarea>
-          <div class="button-group">
-            <button id="toggleBase64" class="toggle-btn">Base64输入</button>
-            <button id="toggleUrl" class="toggle-btn">URL输入</button>
-          </div>
+        <div class="loading" id="loading"></div>
+        <div class="result-container" id="resultContainer">
+            <div class="result-header">
+                <span>识别结果</span>
+                <button class="copy-btn" id="copyBtn">复制结果</button>
+            </div>
+            <div class="result" id="result"></div>
         </div>
-        <img id="previewImage" class="preview-image" alt="图片预览">
-      </div>
-      <div class="loading" id="loading"></div>
-      <div class="result-container" id="resultContainer">
-        <div class="result-header">
-          <span>识别结果</span>
-          <button class="copy-btn" id="copyBtn">复制结果</button>
-        </div>
-        <div class="result" id="result"></div>
-      </div>
-       <!-- Moved footer outside the container but kept its structure -->
-    </div>
-
-    <!-- History Sidebar -->
-    <div class="history-sidebar" id="historySidebar">
-      <h2>识别历史</h2>
-      <div id="historyList">
-          <div class="no-history">加载历史记录中...</div>
-      </div>
-    </div>
-
-    <!-- Image Modal -->
-    <div id="imageModal" class="modal">
-      <img class="modal-content" id="modalImage" alt="全屏图片">
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
         <div class="powered-by">
-          由 <a href="https://chat.qwenlm.ai/" target="_blank" rel="noopener noreferrer">Qwen VL</a> 提供支持，一切仅用于学习使用！
+            由 <a href="https://chat.qwenlm.ai/" target="_blank" rel="noopener noreferrer">Qwen VL</a> 提供支持，一切仅用于学习使用！
         </div>
     </div>
 
-    <!-- Client-side Javascript -->
+    <!-- 历史记录侧边栏 -->
+    <div class="history-sidebar" id="historySidebar">
+        <h2>识别历史</h2>
+        <div id="historyList">
+            <div class="no-history">加载历史记录中...</div>
+        </div>
+    </div>
+
+    <!-- 图片模态框 -->
+    <div id="imageModal" class="modal">
+        <img class="modal-content" id="modalImage" alt="全屏图片">
+    </div>
+
+
+
+    <!-- 客户端 Javascript -->
     <script>
-        // --- History Manager Class ---
+        // --- 历史记录管理器类 ---
         class HistoryManager {
             constructor(maxHistory = 10) {
                 this.maxHistory = maxHistory;
@@ -804,33 +974,33 @@
 
             getHistoryKey(token) {
                 const prefix = 'imageRecognition_history_';
-                // Use a safer identifier if token can be long/complex or empty
+                // 如果 token 可能很长或复杂或为空，使用更安全的标识符
                 const tokenIdentifier = token && token.length > 8 ? token.substring(0, 8) : (token || 'default');
                 return prefix + tokenIdentifier;
             }
 
             loadHistory(token) {
-                if (!token) return []; // Don't load history for empty token
+                if (!token) return []; // 不加载空 token 的历史记录
                 const key = this.getHistoryKey(token);
                 try {
                     const history = localStorage.getItem(key);
                     return history ? JSON.parse(history) : [];
                 } catch (e) {
-                    console.error("Failed to parse history from localStorage for key:", key, e);
-                    localStorage.removeItem(key); // Remove corrupted data
+                    console.error("无法从 localStorage 解析历史记录，键:", key, e);
+                    localStorage.removeItem(key); // 移除损坏的数据
                     return [];
                 }
             }
 
             saveHistory(token, history) {
-                 if (!token) return; // Don't save history for empty token
+                if (!token) return; // 不保存空 token 的历史记录
                 const key = this.getHistoryKey(token);
                 try {
-                    // Ensure history doesn't exceed max size before saving
+                    // 确保保存前历史记录不超过最大大小
                     const limitedHistory = history.slice(0, this.maxHistory);
                     localStorage.setItem(key, JSON.stringify(limitedHistory));
                 } catch (e) {
-                    console.error("Failed to save history to localStorage for key:", key, e);
+                    console.error("无法保存历史记录到 localStorage，键:", key, e);
                     if (e.name === 'QuotaExceededError') {
                         alert('无法保存更多历史记录，本地存储空间已满。请尝试清理其他网站数据。');
                     }
@@ -839,26 +1009,26 @@
 
             addHistory(token, imageData, result) {
                 if (!token) {
-                    console.warn("Attempted to add history without a valid token.");
+                    console.warn("尝试在没有有效 token 的情况下添加历史记录。");
                     return;
                 }
                 let history = this.loadHistory(token);
                 const newRecord = {
-                    image: imageData, // Store as data URL
+                    image: imageData, // 以数据 URL 存储
                     result: result,
                     timestamp: new Date().toISOString()
                 };
                 history.unshift(newRecord);
-                // Slicing is handled in saveHistory now
+                // 保存历史记录时处理切片
                 this.saveHistory(token, history);
-                this.displayHistory(token); // Update display immediately
+                this.displayHistory(token); // 立即更新显示
             }
 
             displayHistory(token) {
                 const historyListEl = document.getElementById('historyList');
                 if (!historyListEl) return;
 
-                 // If no token, show message and clear list
+                // 如果没有 token，显示消息并清空列表
                 if (!token) {
                     historyListEl.innerHTML = '<div class="no-history">请先设置 Cookie 以查看历史记录</div>';
                     return;
@@ -876,7 +1046,7 @@
                 history.forEach((record, i) => {
                     const imageUrl = typeof record.image === 'string' && record.image.startsWith('data:') ?
                         record.image :
-                        'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // Placeholder
+                        'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // 占位符
 
                     const timestamp = new Date(record.timestamp);
                     const timeStr = isNaN(timestamp) ? '无效日期' : timestamp.toLocaleString('zh-CN', {
@@ -915,42 +1085,42 @@
 
                 historyListEl.innerHTML = html;
 
-                // Render MathJax for the updated history list
+                // 为更新的历史记录列表渲染 MathJax
                 waitForMathJax(() => {
                     try {
                         if (window.MathJax && historyListEl.childElementCount > 0) {
-                           window.MathJax.typesetPromise([historyListEl])
-                              .catch(err => console.error("MathJax渲染历史记录错误:", err));
+                            window.MathJax.typesetPromise([historyListEl])
+                                .catch(err => console.error("MathJax渲染历史记录错误:", err));
                         }
                     } catch (err) {
                         console.error("MathJax处理历史记录错误:", err);
                     }
                 });
             }
-        } // End of HistoryManager class
+        } // 历史记录管理器类结束
 
-        // --- Global State & Elements ---
+        // --- 全局状态和元素 ---
         let currentToken = '';
-        const historyManager = new HistoryManager(); // Instantiate the manager
+        const historyManager = new HistoryManager(); // 实例化管理器
 
-        // DOM Elements (ensure they exist)
+        // DOM 元素(确保它们存在)
         const uploadArea = document.getElementById('uploadArea');
         const resultDiv = document.getElementById('result');
         const resultContainer = document.getElementById('resultContainer');
         const loading = document.getElementById('loading');
         const previewImage = document.getElementById('previewImage');
-        const historyList = document.getElementById('historyList'); // For the display area inside history sidebar
+        const historyList = document.getElementById('historyList'); // 历史记录侧边栏内的显示区域
         const sidebar = document.getElementById('sidebar');
         const sidebarToggle = document.getElementById('sidebarToggle');
         const cookieInput = document.getElementById('cookieInput');
         const saveTokensBtn = document.getElementById('saveTokens');
-        // const tokenList = document.getElementById('tokenList'); // Likely unused element now
+        // const tokenList = document.getElementById('tokenList'); // 可能未使用的元素
         const historySidebar = document.getElementById('historySidebar');
         const historyToggle = document.getElementById('historyToggle');
         const closeSidebarBtn = document.getElementById('closeSidebar');
         const currentTokenDisplay = document.getElementById('currentTokenDisplay');
         const tokenExpiryDisplay = document.getElementById('tokenExpiryDisplay');
-        const copyBtn = document.getElementById('copyBtn'); // Main result copy button
+        const copyBtn = document.getElementById('copyBtn'); // 主结果复制按钮
         const base64Input = document.getElementById('base64Input');
         const toggleBase64 = document.getElementById('toggleBase64');
         const urlInput = document.getElementById('urlInput');
@@ -962,9 +1132,9 @@
         const promptInput = document.getElementById('promptInput');
 
 
-        // --- Utility Functions ---
+        // --- 工具函数 ---
 
-        // Debounce
+        // 防抖处理
         function debounce(func, wait) {
             let timeout;
             return function executedFunction(...args) {
@@ -980,18 +1150,18 @@
         // 新增: 通用复制文本函数
         async function copyTextToClipboard(text) {
             if (!text) return false;
-            
+
             // 首选 navigator.clipboard API
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 try {
                     await navigator.clipboard.writeText(text);
                     return true;
                 } catch (clipboardError) {
-                    console.warn('Clipboard API failed:', clipboardError);
+                    console.warn('Clipboard API 失败:', clipboardError);
                     // 继续尝试后备方案
                 }
             }
-            
+
             // 后备方案: 使用 textarea
             try {
                 const textArea = document.createElement('textarea');
@@ -1002,20 +1172,20 @@
                 document.body.appendChild(textArea);
                 textArea.focus();
                 textArea.select();
-                
+
                 const successful = document.execCommand('copy');
                 textArea.remove();
                 return successful;
             } catch (fallbackError) {
-                console.error('Fallback copy failed:', fallbackError);
+                console.error('后备复制失败:', fallbackError);
                 return false;
             }
         }
 
-        // Show Full Image Modal
+        // 显示全屏图片模态框
         function showFullImage(src) {
             if (!src || src.startsWith('data:image/gif') || !modal || !modalImg) return;
-            
+
             try {
                 // 如果是 base64 图片并且太长，使用新窗口打开
                 if (src.startsWith('data:') && src.length > 32768) {
@@ -1064,7 +1234,7 @@
             };
         }
 
-        // Read File as Data URL (Async)
+        // 以数据 URL 形式读取文件(异步)
         function readFileAsDataURL(file) {
             return new Promise((resolve, reject) => {
                 if (!file || !file.type.startsWith('image/')) {
@@ -1077,23 +1247,23 @@
             });
         }
 
-         // JWT Parsing (basic, no verification)
+        // JWT 解析(基础版,无验证)
         function parseJwt(token) {
             try {
                 const base64Url = token.split('.')[1];
                 if (!base64Url) return null;
                 const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
                     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
                 }).join(''));
                 return JSON.parse(jsonPayload);
             } catch (e) {
-                // console.error('JWT 解析错误:', e); // Be less verbose in console
+                // console.error('JWT 解析错误:', e); // 在控制台中减少冗长
                 return null;
             }
         }
 
-        // Update Token Expiry Display
+        // 更新 Token 过期时间显示
         function updateTokenExpiryDisplay(token) {
             if (!tokenExpiryDisplay) return;
 
@@ -1111,85 +1281,85 @@
             }
 
             try {
-                 const expiryDate = new Date(decoded.exp * 1000);
-                 const now = new Date();
-                 const isExpired = expiryDate < now;
-                 const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-                 let dateString;
-                 try {
+                const expiryDate = new Date(decoded.exp * 1000);
+                const now = new Date();
+                const isExpired = expiryDate < now;
+                const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+                let dateString;
+                try {
                     dateString = expiryDate.toLocaleString('zh-CN', options);
-                 } catch(localeError){ // Fallback for environments without full locale support
+                } catch (localeError) { // 环境没有完整的区域设置支持时的后备
                     dateString = expiryDate.toISOString().replace('T', ' ').substring(0, 19);
-                 }
+                }
 
-                 tokenExpiryDisplay.textContent = dateString;
+                tokenExpiryDisplay.textContent = dateString;
 
-                 if (isExpired) {
-                     tokenExpiryDisplay.className = 'token-expiry expired';
-                     tokenExpiryDisplay.textContent += ' (已过期)';
-                 } else {
-                     tokenExpiryDisplay.className = 'token-expiry';
-                 }
+                if (isExpired) {
+                    tokenExpiryDisplay.className = 'token-expiry expired';
+                    tokenExpiryDisplay.textContent += ' (已过期)';
+                } else {
+                    tokenExpiryDisplay.className = 'token-expiry';
+                }
             } catch (e) {
-                 console.error("Error formatting expiry date:", e);
-                 tokenExpiryDisplay.textContent = '格式化错误';
-                 tokenExpiryDisplay.className = 'token-expiry';
+                console.error("格式化过期日期错误:", e);
+                tokenExpiryDisplay.textContent = '格式化错误';
+                tokenExpiryDisplay.className = 'token-expiry';
             }
         }
 
-         // Update token display (shortened) and expiry
+        // 更新 token 显示(缩短)和过期时间
         function updateTokenDisplay(token) {
-            currentToken = token || ''; // Update global state
+            currentToken = token || ''; // 更新全局状态
             if (currentTokenDisplay) {
-               currentTokenDisplay.textContent = currentToken ? `${currentToken.slice(0, 10)}...${currentToken.slice(-10)}` : '未设置';
+                currentTokenDisplay.textContent = currentToken ? `${currentToken.slice(0, 10)}...${currentToken.slice(-10)}` : '未设置';
             }
             updateTokenExpiryDisplay(currentToken);
         }
 
 
-        // --- Core Logic Functions ---
+        // --- 核心逻辑函数 ---
 
-        // Display Result and Render MathJax
+        // 显示结果并渲染 MathJax
         function displayResult(resultText) {
             if (resultDiv && resultContainer && copyBtn) {
                 resultDiv.setAttribute('data-original-text', resultText);
-                resultDiv.innerHTML = resultText; // Set raw HTML first
+                resultDiv.innerHTML = resultText; // 首先设置原始 HTML
                 resultContainer.classList.add('show');
                 copyBtn.textContent = '复制结果';
                 copyBtn.classList.remove('copied');
 
-                // Render MathJax
+                // 渲染 MathJax
                 waitForMathJax(() => {
                     try {
-                        if (window.MathJax) { // Check if MathJax is available
-                           window.MathJax.typesetPromise([resultDiv])
-                              .catch(err => console.error("MathJax 渲染结果错误:", err));
+                        if (window.MathJax) { // 检查 MathJax 是否可用
+                            window.MathJax.typesetPromise([resultDiv])
+                                .catch(err => console.error("MathJax 渲染结果错误:", err));
                         }
                     } catch (err) {
                         console.error("MathJax 处理结果错误:", err);
                     }
                 });
             } else {
-                 console.error("Result display elements not found!");
+                console.error("未找到结果显示元素!");
             }
         }
 
-        // Show Error Message
+        // 显示错误信息
         function showError(message) {
-             if (resultDiv && resultContainer && copyBtn) {
+            if (resultDiv && resultContainer && copyBtn) {
                 resultDiv.textContent = `处理失败: ${message}`;
                 resultContainer.classList.add('show');
                 copyBtn.textContent = '复制结果';
                 copyBtn.classList.remove('copied');
-             }
-             if (loading) loading.style.display = 'none'; // Ensure loading is hidden on error
+            }
+            if (loading) loading.style.display = 'none'; // 确保错误时隐藏加载状态
         }
 
-         // Generic API Call Function
+        // 通用 API 调用函数
         async function makeApiCall(endpoint, options) {
             loading.style.display = 'block';
             resultContainer.classList.remove('show');
-            if(resultDiv) resultDiv.innerHTML = ''; // Clear previous results
+            if (resultDiv) resultDiv.innerHTML = ''; // 清除之前的结果
 
             try {
                 const response = await fetch(endpoint, options);
@@ -1200,43 +1370,43 @@
                         const errorData = await response.json();
                         errorMsg = errorData.error || JSON.stringify(errorData) || errorMsg;
                     } catch (parseError) {
-                        // If parsing JSON fails, use the status text
+                        // 如果解析 JSON 失败，使用状态文本
                         errorMsg = response.statusText || errorMsg;
                     }
                     throw new Error(errorMsg);
                 }
 
-                 const data = await response.json();
-                 if (endpoint === '/proxy/upload') { // Proxy just returns the upload data
+                const data = await response.json();
+                if (endpoint === '/proxy/upload') { // 代理仅返回上传数据
                     return data;
-                 } else { // Recognition endpoints should return { success: boolean, ... }
+                } else { // 识别端点应返回 { success: boolean, ... }
                     if (!data.success) {
                         throw new Error(data.error || 'API 返回识别失败');
                     }
                     return data; // { success: true, result: ..., type: ... }
-                 }
+                }
 
             } catch (error) {
-                console.error(`API call to ${endpoint} failed:`, error);
+                console.error(`API 调用 ${endpoint} 失败:`, error);
                 showError(error.message);
-                throw error; // Re-throw to be caught by caller if needed
+                throw error; // 如果需要被调用者捕获，则重新抛出
             } finally {
-                 if (loading) loading.style.display = 'none';
+                if (loading) loading.style.display = 'none';
             }
         }
 
 
-        // Process Image File Upload
+        // 处理图片文件上传
         async function processImage(file) {
             if (!currentToken) {
                 alert('请先在设置中输入有效的Cookie并保存');
-                if(sidebar) sidebar.classList.add('open');
+                if (sidebar) sidebar.classList.add('open');
                 return;
             }
             const savedCookie = localStorage.getItem('imageRecognitionCookie');
             if (!savedCookie) {
                 alert('无法找到已保存的Cookie，请重新设置');
-                 if(sidebar) sidebar.classList.add('open');
+                if (sidebar) sidebar.classList.add('open');
                 return;
             }
 
@@ -1248,13 +1418,13 @@
                     previewImage.style.display = 'block';
                 }
             } catch (error) {
-                console.error("Error reading file for preview:", error);
-                 if (previewImage) previewImage.style.display = 'none';
-                 // Proceed without preview if reading fails, but log it
+                console.error("读取文件以预览时出错:", error);
+                if (previewImage) previewImage.style.display = 'none';
+                // 如果读取失败，继续处理，但记录日志
             }
 
             try {
-                // 1. Upload file
+                // 1. 上传文件
                 const formData = new FormData();
                 formData.append('file', file);
                 const uploadData = await makeApiCall('/proxy/upload', {
@@ -1265,7 +1435,7 @@
 
                 if (!uploadData || !uploadData.id) throw new Error('文件上传后未获取到 imageId');
 
-                // 2. Recognize image
+                // 2. 识别图片
                 const recognizeData = await makeApiCall('/recognize', {
                     method: 'POST',
                     headers: {
@@ -1278,28 +1448,28 @@
                 });
 
                 displayResult(recognizeData.result);
-                if (imageDataUrl) { // Only add history if preview was successful
+                if (imageDataUrl) { // 仅在预览成功时添加历史记录
                     historyManager.addHistory(currentToken, imageDataUrl, recognizeData.result);
                 }
 
             } catch (error) {
-                 console.error("Error in processImage:", error);
-                 // showError is called within makeApiCall
+                console.error("处理图片时出错:", error);
+                // showError 在 makeApiCall 内调用
             }
         }
 
-        // Process Base64 Input
+        // 处理 Base64 输入
         const processBase64Debounced = debounce(async (base64Content) => {
             if (!base64Content) return;
             if (!currentToken) {
                 alert('请先设置Cookie');
-                 if(sidebar) sidebar.classList.add('open');
+                if (sidebar) sidebar.classList.add('open');
                 return;
             }
             const savedCookie = localStorage.getItem('imageRecognitionCookie');
-             if (!savedCookie) {
+            if (!savedCookie) {
                 alert('无法找到已保存的Cookie');
-                 if(sidebar) sidebar.classList.add('open');
+                if (sidebar) sidebar.classList.add('open');
                 return;
             }
 
@@ -1307,78 +1477,78 @@
             if (base64Content.startsWith('data:image')) {
                 imageData = base64Content;
             } else if (/^[A-Za-z0-9+/=\s]+$/.test(base64Content) && base64Content.length % 4 === 0) {
-                 imageData = 'data:image/png;base64,' + base64Content.replace(/\s/g, ''); // Assume PNG
+                imageData = 'data:image/png;base64,' + base64Content.replace(/\s/g, ''); // 假设为 PNG
             } else {
-                 showError('无效的 Base64 字符串');
-                 return;
+                showError('无效的 Base64 字符串');
+                return;
             }
 
-            // Attempt preview
-             if (previewImage) {
-                 previewImage.src = imageData;
-                 previewImage.style.display = 'block';
-                 previewImage.onerror = () => { previewImage.style.display = 'none'; }; // Hide if invalid image data
-             }
+            // 尝试预览
+            if (previewImage) {
+                previewImage.src = imageData;
+                previewImage.style.display = 'block';
+                previewImage.onerror = () => { previewImage.style.display = 'none'; }; // 如果无效的图片数据则隐藏
+            }
 
 
             try {
-                 const recognizeData = await makeApiCall('/api/recognize/base64', {
-                     method: 'POST',
-                     headers: {
-                         'Content-Type': 'application/json',
-                         'x-custom-cookie': savedCookie,
-                         'x-advanced-mode': String(advancedMode.checked),
-                         'x-custom-prompt': advancedMode.checked ? btoa(unescape(encodeURIComponent(promptInput.value))) : '',
-                     },
-                     // Send the original input, let backend handle prefix if needed
-                     body: JSON.stringify({ base64Image: base64Content })
-                 });
+                const recognizeData = await makeApiCall('/api/recognize/base64', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-custom-cookie': savedCookie,
+                        'x-advanced-mode': String(advancedMode.checked),
+                        'x-custom-prompt': advancedMode.checked ? btoa(unescape(encodeURIComponent(promptInput.value))) : '',
+                    },
+                    // 发送原始输入，让后端处理前缀(如果需要)
+                    body: JSON.stringify({ base64Image: base64Content })
+                });
 
-                 displayResult(recognizeData.result);
-                 historyManager.addHistory(currentToken, imageData, recognizeData.result); // Use the derived data URL
+                displayResult(recognizeData.result);
+                historyManager.addHistory(currentToken, imageData, recognizeData.result); // 使用派生的数据 URL
 
             } catch (error) {
-                 console.error("Error in processBase64:", error);
-                 // showError is called within makeApiCall
+                console.error("处理 Base64 时出错:", error);
+                // showError 在 makeApiCall 内调用
             }
-        }, 1000); // 1 second debounce
+        }, 1000); // 1 秒防抖
 
-        // Process URL Input
+        // 处理 URL 输入
         const processUrlDebounced = debounce(async (imageUrl) => {
             if (!imageUrl || (!imageUrl.startsWith('http://') && !imageUrl.startsWith('https://'))) {
-                return; // Ignore invalid URLs silently or provide feedback
+                return; // 静默忽略无效 URL 或提供反馈
             }
-             if (!currentToken) {
+            if (!currentToken) {
                 alert('请先设置Cookie');
-                 if(sidebar) sidebar.classList.add('open');
+                if (sidebar) sidebar.classList.add('open');
                 return;
             }
-             const savedCookie = localStorage.getItem('imageRecognitionCookie');
-             if (!savedCookie) {
+            const savedCookie = localStorage.getItem('imageRecognitionCookie');
+            if (!savedCookie) {
                 alert('无法找到已保存的Cookie');
-                 if(sidebar) sidebar.classList.add('open');
+                if (sidebar) sidebar.classList.add('open');
                 return;
             }
 
-            // Attempt to fetch image for preview (optional but good UX)
-            let imageDataForHistory = imageUrl; // Default to URL if fetch fails
-             if (previewImage) previewImage.style.display = 'none'; // Hide previous preview
+            // 尝试获取图片以进行预览(可选但良好的用户体验)
+            let imageDataForHistory = imageUrl; // 如果获取失败，默认使用 URL
+            if (previewImage) previewImage.style.display = 'none'; // 隐藏之前的预览
             try {
-                const imgResponse = await fetch(imageUrl); // Browser fetches directly
+                const imgResponse = await fetch(imageUrl); // 浏览器直接获取
                 if (imgResponse.ok) {
                     const blob = await imgResponse.blob();
-                    imageDataForHistory = await readFileAsDataURL(blob); // Use dataURL for history/preview
+                    imageDataForHistory = await readFileAsDataURL(blob); // 使用 dataURL 进行历史记录/预览
                     if (previewImage) {
                         previewImage.src = imageDataForHistory;
                         previewImage.style.display = 'block';
                         previewImage.onerror = () => { previewImage.style.display = 'none'; };
                     }
                 } else {
-                    console.warn(`Preview fetch failed for ${imageUrl}: ${imgResponse.statusText}`);
+                    console.warn(`预览获取失败 ${imageUrl}: ${imgResponse.statusText}`);
                 }
             } catch (previewError) {
-                console.warn(`Could not load preview for ${imageUrl}: ${previewError.message}`);
-                 if (previewImage) previewImage.style.display = 'none';
+                console.warn(`无法加载预览 ${imageUrl}: ${previewError.message}`);
+                if (previewImage) previewImage.style.display = 'none';
             }
 
 
@@ -1388,8 +1558,8 @@
                     headers: {
                         'Content-Type': 'application/json',
                         'x-custom-cookie': savedCookie,
-                         'x-advanced-mode': String(advancedMode.checked),
-                         'x-custom-prompt': advancedMode.checked ? btoa(unescape(encodeURIComponent(promptInput.value))) : '',
+                        'x-advanced-mode': String(advancedMode.checked),
+                        'x-custom-prompt': advancedMode.checked ? btoa(unescape(encodeURIComponent(promptInput.value))) : '',
                     },
                     body: JSON.stringify({ imageUrl: imageUrl })
                 });
@@ -1398,15 +1568,15 @@
                 historyManager.addHistory(currentToken, imageDataForHistory, recognizeData.result);
 
             } catch (error) {
-                 console.error("Error in processUrl:", error);
-                 // showError is called within makeApiCall
+                console.error("处理 URL 时出错:", error);
+                // showError 在 makeApiCall 内调用
             }
-        }, 1000); // 1 second debounce
+        }, 1000); // 1 秒防抖
 
 
-        // --- Event Listeners Setup ---
+        // --- 事件监听器设置 ---
         function setupEventListeners() {
-            // Save Settings Button
+            // 保存设置按钮
             if (saveTokensBtn) {
                 saveTokensBtn.addEventListener('click', () => {
                     if (cookieInput) {
@@ -1418,24 +1588,24 @@
                         const tokenMatch = cookieValue.match(/token=([^;]+)/);
                         if (!tokenMatch || !tokenMatch[1]) {
                             alert('Cookie格式无效，请确保包含 token=... 部分');
-                             updateTokenDisplay(null); // Clear display
-                             localStorage.removeItem('imageRecognitionCookie');
+                            updateTokenDisplay(null); // 清除显示
+                            localStorage.removeItem('imageRecognitionCookie');
                             return;
                         }
                         localStorage.setItem('imageRecognitionCookie', cookieValue);
                         updateTokenDisplay(tokenMatch[1]);
                         alert('设置已保存');
-                        historyManager.displayHistory(currentToken); // Refresh history view for the new token
+                        historyManager.displayHistory(currentToken); // 刷新新 token 的历史记录视图
                     }
                 });
             }
 
-            // Sidebar Toggles
+            // 侧边栏切换
             if (sidebarToggle && sidebar) sidebarToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
             if (closeSidebarBtn && sidebar) closeSidebarBtn.addEventListener('click', () => sidebar.classList.remove('open'));
             if (historyToggle && historySidebar) historyToggle.addEventListener('click', () => historySidebar.classList.toggle('open'));
 
-            // Drag and Drop Area
+            // 拖放区域
             if (uploadArea) {
                 uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('dragover'); });
                 uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
@@ -1449,9 +1619,9 @@
                         } else { alert("请拖放图片文件。"); }
                     }
                 });
-                // Click to Upload
+                // 点击上传
                 uploadArea.addEventListener('click', (e) => {
-                    // Only trigger if clicking the area itself, not internal controls
+                    // 仅在点击区域本身时触发，而不是内部控件
                     if (e.target === uploadArea || e.target.closest('.upload-text') || e.target.tagName === 'I') {
                         const fileInput = document.createElement('input');
                         fileInput.type = 'file';
@@ -1464,32 +1634,32 @@
                 });
             }
 
-            // Paste Handling (Global)
-             document.addEventListener('paste', (e) => {
+            // 粘贴处理(全局)
+            document.addEventListener('paste', (e) => {
                 const targetTagName = e.target.tagName.toLowerCase();
-                // Ignore paste events inside text inputs/textareas
+                // 忽略文本输入/文本区域内的粘贴事件
                 if (targetTagName === 'input' || targetTagName === 'textarea') {
-                     // If pasting into specific inputs, let their handlers work (or default paste)
-                     if (['base64Input', 'urlInput', 'cookieInput', 'promptInput'].includes(e.target.id)) {
-                         // Let the 'input' event handler for base64/url handle it via debounce
-                         return;
-                     }
-                }
-
-                 // Check for image files in clipboard
-                if (e.clipboardData?.files?.length > 0) {
-                    const file = e.clipboardData.files[0];
-                    if (file?.type.startsWith('image/')) {
-                        e.preventDefault(); // Prevent pasting file name/path as text
-                        processImage(file);
-                        return; // Handled image paste
+                    // 如果粘贴到特定输入中，让它们的处理程序工作(或默认粘贴)
+                    if (['base64Input', 'urlInput', 'cookieInput', 'promptInput'].includes(e.target.id)) {
+                        // 让 'input' 事件处理程序通过防抖处理
+                        return;
                     }
                 }
 
-                // Optional: Check for text that looks like Base64 or URL when pasting outside inputs
+                // 检查剪贴板中的图片文件
+                if (e.clipboardData?.files?.length > 0) {
+                    const file = e.clipboardData.files[0];
+                    if (file?.type.startsWith('image/')) {
+                        e.preventDefault(); // 防止将文件名/路径粘贴为文本
+                        processImage(file);
+                        return; // 处理了图片粘贴
+                    }
+                }
+
+                // 可选: 在输入外粘贴时检查看起来像 Base64 或 URL 的文本
                 // const text = e.clipboardData?.getData('text/plain');
                 // if (text && (targetTagName !== 'input' && targetTagName !== 'textarea')) {
-                //    // Add heuristics here if desired, e.g., auto-populate and process
+                //    // 如果需要，在此处添加启发式，例如自动填充和处理
                 // }
             });
 
@@ -1498,7 +1668,7 @@
                 copyBtn.addEventListener('click', async () => {
                     const originalText = resultDiv?.getAttribute('data-original-text');
                     if (!originalText) return;
-                    
+
                     const success = await copyTextToClipboard(originalText);
                     if (success) {
                         copyBtn.textContent = '已复制';
@@ -1513,7 +1683,7 @@
                 });
             }
 
-            // Base64 Input Toggle & Input Handling
+            // Base64 输入切换和输入处理
             if (toggleBase64 && base64Input && urlInput && toggleUrl) {
                 toggleBase64.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -1524,15 +1694,15 @@
                         urlInput.style.display = 'none';
                         toggleUrl.textContent = 'URL输入';
                         base64Input.focus();
-                        if(previewImage) previewImage.style.display = 'none'; // Hide preview when switching
-                        if(resultContainer) resultContainer.classList.remove('show');
+                        if (previewImage) previewImage.style.display = 'none'; // 切换时隐藏预览
+                        if (resultContainer) resultContainer.classList.remove('show');
                     }
                 });
                 base64Input.addEventListener('click', e => e.stopPropagation());
                 base64Input.addEventListener('input', (e) => processBase64Debounced(e.target.value.trim()));
             }
 
-            // URL Input Toggle & Input Handling
+            // URL 输入切换和输入处理
             if (toggleUrl && urlInput && base64Input && toggleBase64) {
                 toggleUrl.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -1543,76 +1713,76 @@
                         base64Input.style.display = 'none';
                         toggleBase64.textContent = 'Base64输入';
                         urlInput.focus();
-                        if(previewImage) previewImage.style.display = 'none'; // Hide preview when switching
-                        if(resultContainer) resultContainer.classList.remove('show');
+                        if (previewImage) previewImage.style.display = 'none'; // 切换时隐藏预览
+                        if (resultContainer) resultContainer.classList.remove('show');
                     }
                 });
                 urlInput.addEventListener('click', e => e.stopPropagation());
                 urlInput.addEventListener('input', (e) => processUrlDebounced(e.target.value.trim()));
             }
 
-             // Advanced Mode Toggle & Prompt Saving
-             if (advancedMode && promptContainer && promptInput) {
+            // 高级模式切换和 Prompt 保存
+            if (advancedMode && promptContainer && promptInput) {
                 advancedMode.addEventListener('change', () => {
                     const isChecked = advancedMode.checked;
-                    promptContainer.style.display = isChecked ? 'block' : 'none'; // More direct style manipulation
+                    promptContainer.style.display = isChecked ? 'block' : 'none'; // 更直接的样式操作
                     localStorage.setItem('advancedMode', String(isChecked));
-                    // Save prompt immediately when toggling advanced mode ON
+                    // 切换高级模式时立即保存 Prompt
                     if (isChecked) {
-                         localStorage.setItem('customPrompt', promptInput.value);
+                        localStorage.setItem('customPrompt', promptInput.value);
                     }
                 });
-                // Save prompt on input change (debounced), only if advanced mode is checked
+                // 在输入更改时保存 Prompt(防抖)，仅当高级模式被选中时
                 promptInput.addEventListener('input', debounce(() => {
                     if (advancedMode.checked) {
-                         localStorage.setItem('customPrompt', promptInput.value);
+                        localStorage.setItem('customPrompt', promptInput.value);
                     }
                 }, 500));
-             }
+            }
 
-            // Image Modal Close
+            // 图片模态框关闭
             if (modal) {
-                modal.onclick = () => { modal.style.display = "none"; modalImg.src = ''; }; // Clear src on close
+                modal.onclick = () => { modal.style.display = "none"; modalImg.src = ''; }; // 关闭时清除 src
             }
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal?.style.display === 'block') {
-                     modal.style.display = 'none';
-                     modalImg.src = ''; // Clear src on close
+                    modal.style.display = 'none';
+                    modalImg.src = ''; // 关闭时清除 src
                 }
             });
 
-        } // End of setupEventListeners
+        } // 事件监听器设置结束
 
-        // --- Load Initial Settings & Setup ---
+        // --- 加载初始设置和设置 ---
         function loadInitialSettings() {
-            // Load cookie and update token display
+            // 加载 cookie 并更新 token 显示
             const savedCookie = localStorage.getItem('imageRecognitionCookie');
             if (savedCookie && cookieInput) {
                 cookieInput.value = savedCookie;
                 const tokenMatch = savedCookie.match(/token=([^;]+)/);
                 updateTokenDisplay(tokenMatch ? tokenMatch[1] : null);
             } else {
-                 updateTokenDisplay(null); // Ensure UI reflects no token state
+                updateTokenDisplay(null); // 确保 UI 反映无 token 状态
             }
 
-            // Load advanced mode settings
+            // 加载高级模式设置
             const savedMode = localStorage.getItem('advancedMode') === 'true';
             const savedPrompt = localStorage.getItem('customPrompt');
-            if(advancedMode) advancedMode.checked = savedMode;
-            if(promptContainer) promptContainer.style.display = savedMode ? 'block' : 'none';
-            if(promptInput && savedPrompt) promptInput.value = savedPrompt;
-            // Set default prompt if none is saved and advanced mode is off initially
-             else if (promptInput && !savedPrompt && !savedMode) {
-                 // Set the default prompt text here if needed
-                 // promptInput.value = "Default prompt text...";
-             }
+            if (advancedMode) advancedMode.checked = savedMode;
+            if (promptContainer) promptContainer.style.display = savedMode ? 'block' : 'none';
+            if (promptInput && savedPrompt) promptInput.value = savedPrompt;
+            // 如果没有保存的 Prompt 且初始高级模式关闭，则设置默认 Prompt
+            else if (promptInput && !savedPrompt && !savedMode) {
+                // 如果需要，在此处设置默认 Prompt 文本
+                // promptInput.value = "Default prompt text...";
+            }
 
 
-            // Display initial history for the loaded token
+            // 显示加载的 token 的初始历史记录
             historyManager.displayHistory(currentToken);
         }
 
-        // --- History Action Functions (must be global) ---
+        // --- 历史记录操作函数(必须为全局) ---
         async function copyHistoryResult(index, btn) {
             if (!currentToken) return;
             try {
@@ -1650,12 +1820,12 @@
             if (confirm(`确定要删除第 ${index + 1} 条历史记录吗？`)) {
                 history.splice(index, 1);
                 historyManager.saveHistory(currentToken, history);
-                historyManager.displayHistory(currentToken); // Re-render
+                historyManager.displayHistory(currentToken);
             }
         }
 
 
-        // --- Run Setup on DOM Load ---
+        // --- DOM 加载完成后运行设置 ---
         document.addEventListener('DOMContentLoaded', () => {
             loadInitialSettings();
             setupEventListeners();
@@ -1663,4 +1833,5 @@
 
     </script>
 </body>
+
 </html>
