@@ -4,7 +4,7 @@
 
 ```bash
 docker pull sexgirls/qwen-ocr-app:latest
-docker run -p 3000:3000 sexgirls/qwen-ocr-app:latest
+docker run -d -p 3000:3000 sexgirls/qwen-ocr-app:latest
 ```
 
 然后在浏览器中访问应用：
